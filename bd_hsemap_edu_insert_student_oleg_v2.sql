@@ -1,9 +1,7 @@
-use [hse_map_test2]
+use [hsemap_db_edu]
 go
 
 insert into [Student] values
-('Валентина', 'Ираклиевна', 'Поварницына', 'wprzlzecf@edu.hse.ru'),
-('Моисей', 'Назарович', 'Карявин', 'aispbbnrcdfgep@edu.hse.ru'),
 ('Филимон', 'Игоревич', 'Ховрунов', 'sekcchmlyqz@edu.hse.ru'),
 ('Мирослава', 'Казимировна', 'Юневича', 'owqlfjxgs@edu.hse.ru'),
 ('Максимильян', 'Святославович', 'Никаев', 'gziualnfpk@edu.hse.ru'),
