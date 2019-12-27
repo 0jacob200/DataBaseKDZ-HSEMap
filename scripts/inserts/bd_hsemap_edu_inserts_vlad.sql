@@ -1,4 +1,4 @@
-USE hse_map_test4
+USE hsemap_db_edu
 
 Insert into [dbo].[Student]
 Values('яков', '≈вченьевич', 'Ўумилов', 'yaeshumilov@edu.hse.ru'),

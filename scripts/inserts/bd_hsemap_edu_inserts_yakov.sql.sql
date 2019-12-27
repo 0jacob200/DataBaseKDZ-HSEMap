@@ -1,4 +1,4 @@
-use hse_map_test4
+use hsemap_db_edu
 go
 
 insert into [dbo].[Campus]
