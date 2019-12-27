@@ -1,4 +1,4 @@
-use [hsemap_db_edu]
+use hse_map_test3
 go
 
 insert into [Student] values
