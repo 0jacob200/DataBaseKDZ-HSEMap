@@ -1,3 +1,5 @@
+use hse_map_test4
+go
 
 CREATE TABLE [Student]
 ( 

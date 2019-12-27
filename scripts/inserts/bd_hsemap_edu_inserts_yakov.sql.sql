@@ -1,4 +1,4 @@
-use [hsemap_db_edu]
+use hse_map_test4
 go
 
 insert into [dbo].[Campus]
@@ -62,7 +62,7 @@ values ('9:00:00','10:20:00'),
 go
 
 
-insert into  [dbo].[Organisation] (Name_of_Organisation, [Type])
+insert into  [dbo].[Organisation] (Organisation_Name, [Type])
 values ('Столовая Шабла К2','Столовая'),
 ('Столовая Шабла К4','Столовая'),
 ('СС ФБМ','Студенческий совет'),

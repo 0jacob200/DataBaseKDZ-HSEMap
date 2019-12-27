@@ -1,4 +1,4 @@
-use hse_map_test3
+use hse_map_test4
 go
 
 insert into [Student] values
