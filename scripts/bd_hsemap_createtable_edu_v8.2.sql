@@ -1,3 +1,5 @@
+use [hsemap_db_edu]
+go
 
 CREATE TABLE [Student]
 ( 
