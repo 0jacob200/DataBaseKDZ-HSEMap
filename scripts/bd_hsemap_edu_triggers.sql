@@ -9,7 +9,7 @@ begin
 	declare @email varchar(64);
 	declare @firstN varchar(64);
 	declare @secondN varchar(64);
-	declare @surname varchar(64);
+	declare @surname varchar(128);
 
 	set @email = (select Student_Email from inserted)
 	set @firstN = (select First_Name from inserted)
