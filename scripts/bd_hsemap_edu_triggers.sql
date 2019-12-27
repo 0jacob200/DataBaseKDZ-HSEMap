@@ -3,7 +3,7 @@ use [hsemap_db_edu]
 go
 
 create trigger Email_Student_Edu_hse_ru on [dbo].[Student]
-	after insert,update
+	instead of insert
 as
 begin
 	declare @email varchar(64);
@@ -18,8 +18,8 @@ begin
 
 	if (@email like '%__@edu.hse.ru') and
 	(@surname like '__%') and (@firstN like '__%') and (@secondN like '__%')
-	begin
-		insert into [dbo].[Student]
-		values (@firstN, @secondN, @surname, @email)
-	end
+		begin
+			insert into [dbo].[Student]
+			values (@firstN, @secondN, @surname, @email)
+		end
 end
