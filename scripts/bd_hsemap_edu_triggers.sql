@@ -29,6 +29,6 @@ begin
 	select * from inserted where 
 	(Professor_Email like '%__@hse.ru') and
 	(Surname like '__%') and (First_Name like '__%') and (Second_Name like '__%') and
-	([Rank] in ('Старший преподаватель','Тьютр','Доцент','Профессор',
+	([Rank] in ('Старший преподаватель','Тьютор','Доцент','Профессор',
 	'Приглашенный преподаватель','Преподаватель'))
 end
