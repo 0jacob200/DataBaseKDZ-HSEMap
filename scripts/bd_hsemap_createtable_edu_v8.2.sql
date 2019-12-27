@@ -4,8 +4,8 @@ CREATE TABLE [Student]
 	[First_Name]         nvarchar(64)  NULL ,
 	[Second_Name]        nvarchar(64)  NULL ,
 	[Surname]            nvarchar(128)  NULL ,
-	[Email]              varchar(64)  NOT NULL ,
-	CONSTRAINT [XPKStudent] PRIMARY KEY  CLUSTERED ([Email] ASC)
+	[Student_Email]      varchar(64)  NOT NULL ,
+	CONSTRAINT [XPKStudent] PRIMARY KEY  CLUSTERED ([Student_Email] ASC)
 )
 go
 
@@ -24,8 +24,8 @@ CREATE TABLE [Professor]
 	[First_Name]         nvarchar(64)  NOT NULL ,
 	[Second_Name]        nvarchar(64)  NULL ,
 	[Surname]            nvarchar(128)  NOT NULL ,
-	[Professor_s_Email]  varchar(64)  NOT NULL ,
-	CONSTRAINT [XPKProfessor] PRIMARY KEY  CLUSTERED ([Professor_s_Email] ASC)
+	[Professor_Email]    varchar(64)  NOT NULL ,
+	CONSTRAINT [XPKProfessor] PRIMARY KEY  CLUSTERED ([Professor_Email] ASC)
 )
 go
 
@@ -58,7 +58,7 @@ CREATE TABLE [Room]
 	[Building_Name]      nvarchar(32)  NOT NULL ,
 	[Room_Number]        nvarchar(16)  NOT NULL ,
 	[Capacity]           integer  NULL ,
-	[Type]               nvarchar(32)  NULL ,
+	[Type]               nvarchar(64)  NULL ,
 	CONSTRAINT [XPKRoom] PRIMARY KEY  CLUSTERED ([Campus_Name] ASC,[Building_Name] ASC,[Room_Number] ASC),
 	CONSTRAINT [R_6] FOREIGN KEY ([Campus_Name],[Building_Name]) REFERENCES [Building]([Campus_Name],[Building_Name])
 		ON DELETE NO ACTION
@@ -79,7 +79,7 @@ CREATE TABLE [Class]
 	CONSTRAINT [R_14] FOREIGN KEY ([ID_Time_span]) REFERENCES [Time_span]([ID_Time_span])
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION,
-	CONSTRAINT [R_17] FOREIGN KEY ([Professor_Email]) REFERENCES [Professor]([Professor_s_Email])
+	CONSTRAINT [R_17] FOREIGN KEY ([Professor_Email]) REFERENCES [Professor]([Professor_Email])
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION,
 	CONSTRAINT [R_18] FOREIGN KEY ([Campus_Name],[Building_Name],[Room_Number]) REFERENCES [Room]([Campus_Name],[Building_Name],[Room_Number])
@@ -90,15 +90,15 @@ go
 
 CREATE TABLE [Student_Addition_Class]
 ( 
-	[Email]              varchar(64)  NOT NULL ,
+	[Student_Email]      varchar(64)  NOT NULL ,
 	[ID_Time_span]       integer  NOT NULL ,
 	[Campus_Name]        nvarchar(64)  NOT NULL ,
 	[Building_Name]      nvarchar(32)  NOT NULL ,
 	[Room_Number]        nvarchar(16)  NOT NULL ,
 	[Date_Class]         date  NOT NULL ,
 	[Type]               nvarchar(32)  NULL ,
-	CONSTRAINT [XPKStudent_Class] PRIMARY KEY  CLUSTERED ([Email] ASC,[ID_Time_span] ASC,[Campus_Name] ASC,[Building_Name] ASC,[Room_Number] ASC,[Date_Class] ASC),
-	CONSTRAINT [R_48] FOREIGN KEY ([Email]) REFERENCES [Student]([Email])
+	CONSTRAINT [XPKStudent_Class] PRIMARY KEY  CLUSTERED ([Student_Email] ASC,[ID_Time_span] ASC,[Campus_Name] ASC,[Building_Name] ASC,[Room_Number] ASC,[Date_Class] ASC),
+	CONSTRAINT [R_48] FOREIGN KEY ([Student_Email]) REFERENCES [Student]([Student_Email])
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION,
 	CONSTRAINT [R_49] FOREIGN KEY ([ID_Time_span],[Campus_Name],[Building_Name],[Room_Number],[Date_Class]) REFERENCES [Class]([ID_Time_span],[Campus_Name],[Building_Name],[Room_Number],[Date_Class])
@@ -213,12 +213,12 @@ go
 CREATE TABLE [Groups_Student]
 ( 
 	[Full_Group_Number]  nvarchar(16)  NOT NULL ,
-	[Email]              varchar(64)  NOT NULL ,
-	CONSTRAINT [XPKGroups_Student] PRIMARY KEY  CLUSTERED ([Full_Group_Number] ASC,[Email] ASC),
+	[Student_Email]      varchar(64)  NOT NULL ,
+	CONSTRAINT [XPKGroups_Student] PRIMARY KEY  CLUSTERED ([Full_Group_Number] ASC,[Student_Email] ASC),
 	CONSTRAINT [R_39] FOREIGN KEY ([Full_Group_Number]) REFERENCES [Groups]([Full_Group_Number])
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION,
-	CONSTRAINT [R_40] FOREIGN KEY ([Email]) REFERENCES [Student]([Email])
+	CONSTRAINT [R_40] FOREIGN KEY ([Student_Email]) REFERENCES [Student]([Student_Email])
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION
 )
