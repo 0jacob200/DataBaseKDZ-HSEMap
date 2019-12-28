@@ -226,3 +226,18 @@ GO
 
 INSERT INTO Student_Addition_Class
 VALUES('ogzelyanin@edu.hse.ru', 4, 'АУК "Шаболовская"', '5', '5410', '2019-12-27', 'Факультатив')
+GO
+
+INSERT INTO Schedule_Organisation
+VALUES
+(1, 6),
+(2, 6),
+(3, 7),
+(4, 8)
+GO
+
+INSERT INTO Room_Organisation
+VALUES
+('АУК "Шаболовская"', '4', '4205', 6),
+('АУК "Шаболовская"', '4', '4224', 7),
+('АУК "Шаболовская"', '5', '5410', 8)
