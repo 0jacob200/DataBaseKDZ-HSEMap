@@ -18,9 +18,20 @@ go
 
 --Запрос с коррелированным подзапросом в SELECT – 2
 
-select * from 
+/*
+select Room_Number from [dbo].[Room_Organisation]
+where [Campus_Name]='АУК "Шаболовская"' and [ID_Organisation] in
+(select ID_Organisation from [dbo].[Organisation] where [Type] = 'Учебный офис')
+go
+
+select Short_Faculty_Name from [dbo].[Campus_Faculty]
+where Campus_Name = (select Campus_Name from [dbo].[Campus]
+where [Main_Address]='Покровский бульвар д.11')
+go
+*/
 
 --Запрос с подзапросом в FROM– 2
+
 
 
 --Запрос с подзапросом в FROM, агрегированием, группировкой и сортировкой – 2 
