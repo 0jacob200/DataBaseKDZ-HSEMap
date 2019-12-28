@@ -32,7 +32,12 @@ go
 
 --Запрос с подзапросом в FROM– 2
 
-
+select * from 
+(select * from [dbo].[Organisation] where [Type] = 'Столовая') as org 
+join 
+(select ld.ID_Labor_day, ID_Organisation, Week_day from [dbo].[Schedule_Organisation] as s
+join [dbo].[Labor_day] as ld on s.ID_Labor_day = ld.ID_Labor_day) as s_org 
+on org.ID_Organisation = s_org.ID_Organisation
 
 --Запрос с подзапросом в FROM, агрегированием, группировкой и сортировкой – 2 
 
