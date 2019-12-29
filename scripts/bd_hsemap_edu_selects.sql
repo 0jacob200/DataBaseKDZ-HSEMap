@@ -22,12 +22,14 @@ go
 
 --Запрос с подзапросом в FROM– 2
 
+/* нужно доделать
 select * from 
 (select * from [dbo].[Organisation] where [Type] = 'Столовая') as org 
 join 
 (select ld.ID_Labor_day, ID_Organisation, Week_day from [dbo].[Schedule_Organisation] as s
 join [dbo].[Labor_day] as ld on s.ID_Labor_day = ld.ID_Labor_day) as s_org 
 on org.ID_Organisation = s_org.ID_Organisation
+*/
 
 --Запрос с подзапросом в FROM, агрегированием, группировкой и сортировкой – 2 
 
@@ -86,7 +88,7 @@ WHERE Time_span.End_time >= CONVERT(varchar(20), GETDATE(), 108))
 
 --Запрос, использующий манипуляции с множествами - 1 
 
-select * from 
+select * from -- 90+6=48??????????
 (
 select FSS, Short_Faculty_Name from (select FSS, Edu_prog_name from
 (select FSS, Full_Group_Number from Schedule) as PS 
