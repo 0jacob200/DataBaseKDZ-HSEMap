@@ -3,7 +3,6 @@ go
 
 --Простой запрос с условием и формулами в SELECT – 2
 
-/*
 select Full_Group_Number, Student_count from [dbo].[Groups]
 where Full_Group_Number like 'BBI18__'
 go
@@ -14,7 +13,6 @@ where [Campus_Name] = 'Покровка' and
 and [Building_Name] not in ('A', 'F', 'L', 'S')
 and [Type] = 'Аудитория'
 go
-*/
 
 --Запрос с коррелированным подзапросом в SELECT – 2
 
@@ -44,7 +42,6 @@ ORDER BY Edu_prog_name, Edu_level ASC OFFSET 0 ROWS) AS StudentsAmountOnEachCour
 		
 --Запрос с коррелированным подзапросом в WHERE– 2 
 
-/*
 select Room_Number from [dbo].[Room_Organisation]
 where [Campus_Name]='АУК "Шаболовская"' and [ID_Organisation] in
 (select ID_Organisation from [dbo].[Organisation] where [Type] = 'Учебный офис')
@@ -54,7 +51,6 @@ select Short_Faculty_Name from [dbo].[Campus_Faculty]
 where Campus_Name = (select Campus_Name from [dbo].[Campus]
 where [Main_Address]='Покровский бульвар д.11')
 go
-*/
 
 --Запрос, использующий оконную функцию LAG или LEAD для выполнения сравнения данных в разных периодах – 1
 
@@ -114,6 +110,8 @@ where Short_Faculty_Name = 'ФБМ'
 --Запрос с агрегированием и выражением JOIN, включающим не менее 3 таблиц/выражений – 1
 
 --я
+
+
 
 --Запрос с CASE (IIF) и агрегированием – 1 
 
