@@ -1,19 +1,11 @@
 use [hsemap_db_edu]
 go
 
+-- триггер на правильность введения данных о студентах: почта оканчивается на @edu.hse.ru и ФИО не может содержать меньше чем 2 буквы
 create trigger Email_Student_Edu_hse_ru on [dbo].[Student]
 	instead of insert
 as
 begin
-	--declare @email varchar(64);
-	--declare @firstN varchar(64);
-	--declare @secondN varchar(64);
-	--declare @surname varchar(128);
-
-	--set @email = (select Student_Email from inserted)
-	--set @firstN = (select First_Name from inserted)
-	--set @secondN = (select Second_Name from inserted)
-	--set @surname = (select Surname from inserted)
 	insert into Student
 	select * from inserted where 
 	(Student_Email like '%__@edu.hse.ru') and
@@ -21,6 +13,8 @@ begin
 end
 go
 
+-- триггер на правильность введения данных о преподавателей: почта оканчивается на @hse.ru, ФИО не может содержать меньше чем 2 буквы
+-- и ранг преподавания лежит в ограниченном множестве значений 
 create trigger Email_Professor_hse_ru on [dbo].[Professor]
 	instead of insert
 as
