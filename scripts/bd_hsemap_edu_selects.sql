@@ -56,15 +56,33 @@ go
 
 --Запрос, использующий оконную функцию LAG или LEAD для выполнения сравнения данных в разных периодах – 1
 
+SELECT Campus_Name, Building_name, Room_Number, Start_time, End_time,
+LAG(Start_Time) OVER(ORDER BY Start_time) AS PreviousClass_StartTime,
+LAG(End_Time) OVER(ORDER By End_time) AS PreviousClass_EndTime
+FROM SearchForClasses('ogzelyanin@edu.hse.ru', '2019-12-27')
+JOIN Time_span ON SearchForClasses.ID_Time_span = Time_span.ID_Time_span
 
 
 --Запрос с агрегированием и выражением JOIN, включающим не менее 2 таблиц – 3 
 
+SELECT Building.Campus_Name, Building.Building_Name, Address, MaxFloor, Room_Number FROM Building
+JOIN Room ON Building.Campus_Name = Room.Campus_Name
+AND Building.Building_Name = Room.Building_Name
+JOIN (SELECT Campus_Name, MAX(Floor_count) AS MaxFloor FROM Building GROUP BY Campus_Name) AS Campus_Floor
+ON Building.Campus_Name = Campus_Floor.Campus_Name 
+AND
+Building.Floor_count = Campus_Floor.MaxFloor
+
+SELECT Main_Address, Campus.Campus_Name, Organisation_Amount FROM Campus
+JOIN (SELECT Campus_Name, COUNT(ID_Organisation) AS Organisation_Amount FROM Room_Organisation GROUP BY Campus_Name) AS CampusOrg
+ON Campus.Campus_Name = CampusOrg.Campus_Name
 
 
 --Запрос с EXISTS – 1
 
-
+SELECT Campus_Name, Room_Number, Capacity, Type FROM Room
+WHERE Capacity >= 30 AND EXISTS (SELECT End_time FROM Time_span
+WHERE Time_span.End_time >= CONVERT(varchar(20), GETDATE(), 108))
 
 --Запрос, использующий манипуляции с множествами - 1 
 
