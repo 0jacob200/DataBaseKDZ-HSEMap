@@ -18,17 +18,7 @@ go
 
 --Запрос с коррелированным подзапросом в SELECT – 2
 
-/*
-select Room_Number from [dbo].[Room_Organisation]
-where [Campus_Name]='АУК "Шаболовская"' and [ID_Organisation] in
-(select ID_Organisation from [dbo].[Organisation] where [Type] = 'Учебный офис')
-go
 
-select Short_Faculty_Name from [dbo].[Campus_Faculty]
-where Campus_Name = (select Campus_Name from [dbo].[Campus]
-where [Main_Address]='Покровский бульвар д.11')
-go
-*/
 
 --Запрос с подзапросом в FROM– 2
 
@@ -41,11 +31,28 @@ on org.ID_Organisation = s_org.ID_Organisation
 
 --Запрос с подзапросом в FROM, агрегированием, группировкой и сортировкой – 2 
 
+SELECT * FROM
+(SELECT Campus_Name, AVG(Capacity) AS AVG_Room_Capacity FROM Room
+GROUP BY Campus_Name ORDER BY AVG_Room_Capacity DESC OFFSET 0 ROWS) AS RoomsCapacity
 
-
+SELECT * FROM
+(SELECT Edu_prog_name, Edu_level, Year_of_enrollment, SUM(Student_count) AS Students_Amount FROM Groups
+GROUP BY Edu_prog_name, Edu_level, Year_of_enrollment
+ORDER BY Edu_prog_name, Edu_level ASC OFFSET 0 ROWS) AS StudentsAmountOnEachCourse
+		
 --Запрос с коррелированным подзапросом в WHERE– 2 
 
+/*
+select Room_Number from [dbo].[Room_Organisation]
+where [Campus_Name]='АУК "Шаболовская"' and [ID_Organisation] in
+(select ID_Organisation from [dbo].[Organisation] where [Type] = 'Учебный офис')
+go
 
+select Short_Faculty_Name from [dbo].[Campus_Faculty]
+where Campus_Name = (select Campus_Name from [dbo].[Campus]
+where [Main_Address]='Покровский бульвар д.11')
+go
+*/
 
 --Запрос, использующий оконную функцию LAG или LEAD для выполнения сравнения данных в разных периодах – 1
 
