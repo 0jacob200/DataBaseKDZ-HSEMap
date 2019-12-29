@@ -1,34 +1,34 @@
-use hsemap_db_edu
+п»їuse hsemap_db_edu
 go
 
---Простой запрос с условием и формулами в SELECT – 2
+--РџСЂРѕСЃС‚РѕР№ Р·Р°РїСЂРѕСЃ СЃ СѓСЃР»РѕРІРёРµРј Рё С„РѕСЂРјСѓР»Р°РјРё РІ SELECT вЂ“ 2
 
 select Full_Group_Number, Student_count from [dbo].[Groups]
 where Full_Group_Number like 'BBI18__'
 go
 
 select [Building_Name], [Room_Number], [Capacity], [Type] from [dbo].[Room]
-where [Campus_Name] = 'Покровка' and 
+where [Campus_Name] = 'РџРѕРєСЂРѕРІРєР°' and 
 [Capacity] between 14 and 36
 and [Building_Name] not in ('A', 'F', 'L', 'S')
-and [Type] = 'Аудитория'
+and [Type] = 'РђСѓРґРёС‚РѕСЂРёСЏ'
 
---Запрос с коррелированным подзапросом в SELECT – 2
+--Р—Р°РїСЂРѕСЃ СЃ РєРѕСЂСЂРµР»РёСЂРѕРІР°РЅРЅС‹Рј РїРѕРґР·Р°РїСЂРѕСЃРѕРј РІ SELECT вЂ“ 2
 
 
 
---Запрос с подзапросом в FROM– 2
+--Р—Р°РїСЂРѕСЃ СЃ РїРѕРґР·Р°РїСЂРѕСЃРѕРј РІ FROMвЂ“ 2
 
 /*
 select * from 
-(select * from [dbo].[Organisation] where [Type] = 'Столовая') as org 
+(select * from [dbo].[Organisation] where [Type] = 'РЎС‚РѕР»РѕРІР°СЏ') as org 
 join 
 (select ld.ID_Labor_day, ID_Organisation, Week_day from [dbo].[Schedule_Organisation] as s
 join [dbo].[Labor_day] as ld on s.ID_Labor_day = ld.ID_Labor_day) as s_org 
 on org.ID_Organisation = s_org.ID_Organisation
 */
 
---Запрос с подзапросом в FROM, агрегированием, группировкой и сортировкой – 2 
+--Р—Р°РїСЂРѕСЃ СЃ РїРѕРґР·Р°РїСЂРѕСЃРѕРј РІ FROM, Р°РіСЂРµРіРёСЂРѕРІР°РЅРёРµРј, РіСЂСѓРїРїРёСЂРѕРІРєРѕР№ Рё СЃРѕСЂС‚РёСЂРѕРІРєРѕР№ вЂ“ 2 
 
 SELECT * FROM
 (SELECT Campus_Name, AVG(Capacity) AS AVG_Room_Capacity FROM Room
@@ -39,19 +39,19 @@ SELECT * FROM
 GROUP BY Edu_prog_name, Edu_level, Year_of_enrollment
 ORDER BY Edu_prog_name, Edu_level ASC OFFSET 0 ROWS) AS StudentsAmountOnEachCourse
 		
---Запрос с коррелированным подзапросом в WHERE– 2 
+--Р—Р°РїСЂРѕСЃ СЃ РєРѕСЂСЂРµР»РёСЂРѕРІР°РЅРЅС‹Рј РїРѕРґР·Р°РїСЂРѕСЃРѕРј РІ WHEREвЂ“ 2 
 
 select Room_Number from [dbo].[Room_Organisation]
-where [Campus_Name]='АУК "Шаболовская"' and [ID_Organisation] in
-(select ID_Organisation from [dbo].[Organisation] where [Type] = 'Учебный офис')
+where [Campus_Name]='РђРЈРљ "РЁР°Р±РѕР»РѕРІСЃРєР°СЏ"' and [ID_Organisation] in
+(select ID_Organisation from [dbo].[Organisation] where [Type] = 'РЈС‡РµР±РЅС‹Р№ РѕС„РёСЃ')
 go
 
 select Short_Faculty_Name from [dbo].[Campus_Faculty]
 where Campus_Name = (select Campus_Name from [dbo].[Campus]
-where [Main_Address]='Покровский бульвар д.11')
+where [Main_Address]='РџРѕРєСЂРѕРІСЃРєРёР№ Р±СѓР»СЊРІР°СЂ Рґ.11')
 
 
---Запрос, использующий оконную функцию LAG или LEAD для выполнения сравнения данных в разных периодах – 1
+--Р—Р°РїСЂРѕСЃ, РёСЃРїРѕР»СЊР·СѓСЋС‰РёР№ РѕРєРѕРЅРЅСѓСЋ С„СѓРЅРєС†РёСЋ LAG РёР»Рё LEAD РґР»СЏ РІС‹РїРѕР»РЅРµРЅРёСЏ СЃСЂР°РІРЅРµРЅРёСЏ РґР°РЅРЅС‹С… РІ СЂР°Р·РЅС‹С… РїРµСЂРёРѕРґР°С… вЂ“ 1
 
 SELECT Campus_Name, Building_name, Room_Number, Start_time, End_time,
 LAG(Start_Time) OVER(ORDER BY Start_time) AS PreviousClass_StartTime,
@@ -60,7 +60,7 @@ FROM SearchForClasses('ogzelyanin@edu.hse.ru', '2019-12-27')
 JOIN Time_span ON SearchForClasses.ID_Time_span = Time_span.ID_Time_span
 
 
---Запрос с агрегированием и выражением JOIN, включающим не менее 2 таблиц – 3 
+--Р—Р°РїСЂРѕСЃ СЃ Р°РіСЂРµРіРёСЂРѕРІР°РЅРёРµРј Рё РІС‹СЂР°Р¶РµРЅРёРµРј JOIN, РІРєР»СЋС‡Р°СЋС‰РёРј РЅРµ РјРµРЅРµРµ 2 С‚Р°Р±Р»РёС† вЂ“ 3 
 
 SELECT Building.Campus_Name, Building.Building_Name, Address, MaxFloor, Room_Number FROM Building
 JOIN Room ON Building.Campus_Name = Room.Campus_Name
@@ -74,14 +74,13 @@ SELECT Main_Address, Campus.Campus_Name, Organisation_Amount FROM Campus
 JOIN (SELECT Campus_Name, COUNT(ID_Organisation) AS Organisation_Amount FROM Room_Organisation GROUP BY Campus_Name) AS CampusOrg
 ON Campus.Campus_Name = CampusOrg.Campus_Name
 
-
---Запрос с EXISTS – 1
+--Р—Р°РїСЂРѕСЃ СЃ EXISTS вЂ“ 1
 
 SELECT Campus_Name, Room_Number, Capacity, Type FROM Room
 WHERE Capacity >= 30 AND EXISTS (SELECT End_time FROM Time_span
 WHERE Start_time >= CONVERT(varchar(20), GETDATE(), 108))
 
---Запрос, использующий манипуляции с множествами - 1 
+--Р—Р°РїСЂРѕСЃ, РёСЃРїРѕР»СЊР·СѓСЋС‰РёР№ РјР°РЅРёРїСѓР»СЏС†РёРё СЃ РјРЅРѕР¶РµСЃС‚РІР°РјРё - 1 
 
 select * from 
 (
@@ -89,7 +88,7 @@ select FSS, Short_Faculty_Name from (select FSS, Edu_prog_name from
 (select FSS, Full_Group_Number from Schedule) as PS 
 join Groups as g on g.Full_Group_Number = PS.Full_Group_Number) as PSProg 
 join [dbo].[Education_program] as EProg on PSProg.Edu_prog_name = EProg.Edu_prog_name 
-where Short_Faculty_Name = 'ФБМ'
+where Short_Faculty_Name = 'Р¤Р‘Рњ'
 ) as P
 union 
 (
@@ -99,36 +98,35 @@ select FSS, Short_Faculty_Name from
 from Student as S join Groups_Student as GS on S.Student_Email = GS.Student_Email) as SG join 
 Groups as G on SG.Full_Group_Number = G.Full_Group_Number) as SEP join Education_program as EP
 on EP.Edu_prog_name = SEP.Edu_prog_name
-where Short_Faculty_Name = 'ФБМ'
+where Short_Faculty_Name = 'Р¤Р‘Рњ'
 )
 
---Запрос с внешним соединением и проверкой на наличие NULL – 1 
+--Р—Р°РїСЂРѕСЃ СЃ РІРЅРµС€РЅРёРј СЃРѕРµРґРёРЅРµРЅРёРµРј Рё РїСЂРѕРІРµСЂРєРѕР№ РЅР° РЅР°Р»РёС‡РёРµ NULL вЂ“ 1 
 
 SELECT CONCAT(Surname, ' ', First_Name,' ', Second_Name) AS FSS, 
-ISNULL(Name_of_subject, 'Не ведёт ни один предмет') AS Name_of_subject,
-ISNULL(Room_Number, 'Не найден') AS Room_Number, Date_Class
+ISNULL(Name_of_subject, 'РќРµ РІРµРґС‘С‚ РЅРё РѕРґРёРЅ РїСЂРµРґРјРµС‚') AS Name_of_subject,
+ISNULL(Room_Number, 'РќРµ РЅР°Р№РґРµРЅ') AS Room_Number, Date_Class
 FROM Professor LEFT OUTER JOIN
 Class ON Professor.Professor_Email = Class.Professor_Email
 
---Запрос с агрегированием и выражением JOIN, включающим не менее 3 таблиц/выражений – 1
+--Р—Р°РїСЂРѕСЃ СЃ Р°РіСЂРµРіРёСЂРѕРІР°РЅРёРµРј Рё РІС‹СЂР°Р¶РµРЅРёРµРј JOIN, РІРєР»СЋС‡Р°СЋС‰РёРј РЅРµ РјРµРЅРµРµ 3 С‚Р°Р±Р»РёС†/РІС‹СЂР°Р¶РµРЅРёР№ вЂ“ 1
 
 select Short_Faculty_Name as Faculty, avg(Num_Labor_Weekday) as Avg_Num_Labor_Weekday
 from (select UO.ID_Organisation, Organisation_Name, count(ID_Labor_day) as Num_Labor_Weekday from 
-(select * from Organisation where [Type] = 'Учебный офис') as UO 
+(select * from Organisation where [Type] = 'Г“Г·ГҐГЎГ­Г»Г© Г®ГґГЁГ±') as UO 
 join Schedule_Organisation as SO on UO.ID_Organisation = SO.ID_Organisation
 Group by Organisation_Name, UO.ID_Organisation) as UOS 
 join Education_program as EDU on EDU.ID_Organisation = UOS.ID_Organisation
 group by Short_Faculty_Name
 go
 
-
---Запрос с CASE (IIF) и агрегированием – 1 
+--Р—Р°РїСЂРѕСЃ СЃ CASE (IIF) Рё Р°РіСЂРµРіРёСЂРѕРІР°РЅРёРµРј вЂ“ 1 
 
 SELECT CONCAT(Surname, ' ', First_Name,' ', Second_Name) AS FSS,
 Student_count, Class.Room_number, Capacity,
 CASE
-	WHEN Capacity <= Student_count THEN 'В аудитории не хватает места'
-	ELSE 'Подходящая аудитория'
+	WHEN Capacity <= Student_count THEN 'Р’ Р°СѓРґРёС‚РѕСЂРёРё РЅРµ С…РІР°С‚Р°РµС‚ РјРµСЃС‚Р°'
+	ELSE 'РџРѕРґС…РѕРґСЏС‰Р°СЏ Р°СѓРґРёС‚РѕСЂРёСЏ'
 END Message
 FROM Professor
 JOIN Class ON Professor.Professor_Email = Class.Professor_Email
@@ -136,13 +134,13 @@ JOIN Groups_Class ON Groups_Class.Room_Number = Class.Room_Number
 JOIN Groups ON Groups_Class.Full_Group_Number = Groups.Full_Group_Number
 JOIN Room ON Room.Room_Number = Class.Room_Number
 
---Запрос с HAVING и агрегированием – 1 
+--Р—Р°РїСЂРѕСЃ СЃ HAVING Рё Р°РіСЂРµРіРёСЂРѕРІР°РЅРёРµРј вЂ“ 1 
 
 select Edu_level, Edu_prog_name, [Year_of_enrollment], sum(Student_count) as Number_of_Student from Groups
 group by Edu_level, Edu_prog_name, Year_of_enrollment
 having sum(Student_count) <= 90
 
---Запрос SELECT INTO для подготовки выгрузки – 1 
+--Р—Р°РїСЂРѕСЃ SELECT INTO РґР»СЏ РїРѕРґРіРѕС‚РѕРІРєРё РІС‹РіСЂСѓР·РєРё вЂ“ 1 
 
 --select * into Education_Office from 
 --(select concat(Type, ' ', Organisation_Name) as Education_Office, count(ID_Labor_day) as Num_of_Labor_day, Room_Number from Organisation as Org
@@ -151,6 +149,15 @@ having sum(Student_count) <= 90
 --where [Type] = 'Учебный офис'
 --Group by Organisation_Name, [Type], Room_Number) as P
 
---Запрос с PIVOT для проведения анализа данных – 1 
-
+--Р—Р°РїСЂРѕСЃ СЃ PIVOT РґР»СЏ РїСЂРѕРІРµРґРµРЅРёСЏ Р°РЅР°Р»РёР·Р° РґР°РЅРЅС‹С… вЂ“ 1 
+SELECT 'Capacity' AS Building, [2], [3], [4], [5], [K9], [K10]
+FROM
+(SELECT Building_Name, SUM(Capacity) AS Capacity FROM Room
+WHERE Campus_Name = 'РђРЈРљ "РЁР°Р±РѕР»РѕРІСЃРєР°СЏ"'
+GROUP BY Building_Name) AS SourceTable
+PIVOT
+(
+AVG(Capacity)
+FOR Building_Name in ([2], [3], [4], [5], [K9], [K10])
+) AS PivotTable
 
