@@ -112,6 +112,14 @@ Class ON Professor.Professor_Email = Class.Professor_Email
 
 --Запрос с агрегированием и выражением JOIN, включающим не менее 3 таблиц/выражений – 1
 
+select Short_Faculty_Name as Faculty, avg(Num_Labor_Weekday) as Avg_Num_Labor_Weekday
+from (select UO.ID_Organisation, Organisation_Name, count(ID_Labor_day) as Num_Labor_Weekday from 
+(select * from Organisation where [Type] = 'Учебный офис') as UO 
+join Schedule_Organisation as SO on UO.ID_Organisation = SO.ID_Organisation
+Group by Organisation_Name, UO.ID_Organisation) as UOS 
+join Education_program as EDU on EDU.ID_Organisation = UOS.ID_Organisation
+group by Short_Faculty_Name
+go
 
 
 --Запрос с CASE (IIF) и агрегированием – 1 
