@@ -12,7 +12,6 @@ where [Campus_Name] = 'Покровка' and
 [Capacity] between 14 and 36
 and [Building_Name] not in ('A', 'F', 'L', 'S')
 and [Type] = 'Аудитория'
-go
 
 --Запрос с коррелированным подзапросом в SELECT – 2
 
@@ -20,7 +19,7 @@ go
 
 --Запрос с подзапросом в FROM– 2
 
-/* нужно доделать
+/*
 select * from 
 (select * from [dbo].[Organisation] where [Type] = 'Столовая') as org 
 join 
@@ -50,7 +49,7 @@ go
 select Short_Faculty_Name from [dbo].[Campus_Faculty]
 where Campus_Name = (select Campus_Name from [dbo].[Campus]
 where [Main_Address]='Покровский бульвар д.11')
-go
+
 
 --Запрос, использующий оконную функцию LAG или LEAD для выполнения сравнения данных в разных периодах – 1
 
@@ -78,13 +77,13 @@ ON Campus.Campus_Name = CampusOrg.Campus_Name
 
 --Запрос с EXISTS – 1
 
-SELECT Campus_Name, Room_Number, Capacity, [Type] FROM Room
+SELECT Campus_Name, Room_Number, Capacity, Type FROM Room
 WHERE Capacity >= 30 AND EXISTS (SELECT End_time FROM Time_span
 WHERE Start_time >= CONVERT(varchar(20), GETDATE(), 108))
 
 --Запрос, использующий манипуляции с множествами - 1 
 
-select * from -- 90+6=48??????????
+select * from 
 (
 select FSS, Short_Faculty_Name from (select FSS, Edu_prog_name from
 (select FSS, Full_Group_Number from Schedule) as PS 
@@ -113,8 +112,6 @@ Class ON Professor.Professor_Email = Class.Professor_Email
 
 --Запрос с агрегированием и выражением JOIN, включающим не менее 3 таблиц/выражений – 1
 
---я
-
 
 
 --Запрос с CASE (IIF) и агрегированием – 1 
@@ -133,7 +130,7 @@ JOIN Room ON Room.Room_Number = Class.Room_Number
 
 --Запрос с HAVING и агрегированием – 1 
 
---я
+
 
 --Запрос SELECT INTO для подготовки выгрузки – 1 
 
@@ -141,4 +138,4 @@ JOIN Room ON Room.Room_Number = Class.Room_Number
 
 --Запрос с PIVOT для проведения анализа данных – 1 
 
---я
+
