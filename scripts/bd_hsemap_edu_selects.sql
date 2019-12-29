@@ -82,7 +82,7 @@ ON Campus.Campus_Name = CampusOrg.Campus_Name
 
 --Запрос с EXISTS – 1
 
-SELECT Campus_Name, Room_Number, Capacity, Type FROM Room
+SELECT Campus_Name, Room_Number, Capacity, [Type] FROM Room
 WHERE Capacity >= 30 AND EXISTS (SELECT End_time FROM Time_span
 WHERE Time_span.End_time >= CONVERT(varchar(20), GETDATE(), 108))
 
@@ -113,7 +113,7 @@ where Short_Faculty_Name = 'ФБМ'
 
 --Запрос с агрегированием и выражением JOIN, включающим не менее 3 таблиц/выражений – 1
 
-
+--я
 
 --Запрос с CASE (IIF) и агрегированием – 1 
 
@@ -121,7 +121,7 @@ where Short_Faculty_Name = 'ФБМ'
 
 --Запрос с HAVING и агрегированием – 1 
 
-
+--я
 
 --Запрос SELECT INTO для подготовки выгрузки – 1 
 
@@ -129,4 +129,4 @@ where Short_Faculty_Name = 'ФБМ'
 
 --Запрос с PIVOT для проведения анализа данных – 1 
 
-
+--я
