@@ -86,7 +86,24 @@ WHERE Time_span.End_time >= CONVERT(varchar(20), GETDATE(), 108))
 
 --Запрос, использующий манипуляции с множествами - 1 
 
-
+select * from 
+(
+select FSS, Short_Faculty_Name from (select FSS, Edu_prog_name from
+(select FSS, Full_Group_Number from Schedule) as PS 
+join Groups as g on g.Full_Group_Number = PS.Full_Group_Number) as PSProg 
+join [dbo].[Education_program] as EProg on PSProg.Edu_prog_name = EProg.Edu_prog_name 
+where Short_Faculty_Name = 'ФБМ'
+) as P
+union 
+(
+select FSS, Short_Faculty_Name from 
+(select FSS, Edu_prog_name from 
+(select CONCAT(Surname, ' ', First_Name,' ', Second_Name) as FSS, Full_Group_Number
+from Student as S join Groups_Student as GS on S.Student_Email = GS.Student_Email) as SG join 
+Groups as G on SG.Full_Group_Number = G.Full_Group_Number) as SEP join Education_program as EP
+on EP.Edu_prog_name = SEP.Edu_prog_name
+where Short_Faculty_Name = 'ФБМ'
+)
 
 --Запрос с внешним соединением и проверкой на наличие NULL – 1 
 
