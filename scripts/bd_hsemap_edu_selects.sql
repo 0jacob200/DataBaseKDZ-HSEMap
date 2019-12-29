@@ -138,7 +138,9 @@ JOIN Room ON Room.Room_Number = Class.Room_Number
 
 --Запрос с HAVING и агрегированием – 1 
 
-
+select Edu_level, Edu_prog_name, [Year_of_enrollment], sum(Student_count) as Number_of_Student from Groups
+group by Edu_level, Edu_prog_name, Year_of_enrollment
+having sum(Student_count) <= 90
 
 --Запрос SELECT INTO для подготовки выгрузки – 1 
 

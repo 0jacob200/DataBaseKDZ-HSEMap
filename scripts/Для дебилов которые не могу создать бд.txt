@@ -10,4 +10,3 @@
 9. bd_hsemap_edu_insert_students_1
 10. bd_hsemap_edu_big_insert_2
 11. bd_hsemap_edu_insert_professor_3
-12. bd_hsemap_edu_inerts_schedule_campus_4
