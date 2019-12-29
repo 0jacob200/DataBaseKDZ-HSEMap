@@ -1,6 +1,7 @@
 USE hsemap_db_edu
 go
 
+-- эта функция принемает на вход почту студента и дату. Возвращает его расписание в этот день
 CREATE FUNCTION SearchForClasses (@Email varchar(64), @Date date)
 RETURNS TABLE
 AS
@@ -17,6 +18,7 @@ RETURN
 );
 go
 
+-- эта функция принемает первые цифры помещения и возвращает все помещения, которые начинаются с тех же цифр\букв
 CREATE FUNCTION FindRoom (@StartRoomNumber varchar(16))
 RETURNS TABLE
 AS

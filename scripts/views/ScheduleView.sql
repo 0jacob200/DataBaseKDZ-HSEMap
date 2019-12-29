@@ -1,3 +1,6 @@
+use hsemap_db_edu
+go
+
 CREATE VIEW Schedule
 AS SELECT Start_Time, End_Time, Campus_Name, Room_Number, Date_Class, DATENAME(dw, Date_Class) AS Week_Day, Name_of_subject,
  CONCAT(Surname, ' ', First_Name,' ', Second_Name) AS FSS
