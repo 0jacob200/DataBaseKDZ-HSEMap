@@ -144,7 +144,12 @@ having sum(Student_count) <= 90
 
 --Запрос SELECT INTO для подготовки выгрузки – 1 
 
-
+--select * into Education_Office from 
+--(select concat(Type, ' ', Organisation_Name) as Education_Office, count(ID_Labor_day) as Num_of_Labor_day, Room_Number from Organisation as Org
+--join Schedule_Organisation as So on Org.ID_Organisation = So.ID_Organisation
+--join Room_Organisation as RO on RO.ID_Organisation = Org.ID_Organisation
+--where [Type] = 'Учебный офис'
+--Group by Organisation_Name, [Type], Room_Number) as P
 
 --Запрос с PIVOT для проведения анализа данных – 1 
 
