@@ -82,7 +82,7 @@ ON Campus.Campus_Name = CampusOrg.Campus_Name
 
 SELECT Campus_Name, Room_Number, Capacity, Type FROM Room
 WHERE Capacity >= 30 AND EXISTS (SELECT End_time FROM Time_span
-WHERE Time_span.End_time >= CONVERT(varchar(20), GETDATE(), 108))
+WHERE Start_time >= CONVERT(varchar(20), GETDATE(), 108))
 
 --Запрос, использующий манипуляции с множествами - 1 
 
@@ -107,7 +107,11 @@ where Short_Faculty_Name = 'ФБМ'
 
 --Запрос с внешним соединением и проверкой на наличие NULL – 1 
 
-
+SELECT CONCAT(Surname, ' ', First_Name,' ', Second_Name) AS FSS, 
+ISNULL(Name_of_subject, 'Не ведёт ни один предмет') AS Name_of_subject,
+ISNULL(Room_Number, 'Не найден') AS Room_Number, Date_Class
+FROM Professor LEFT OUTER JOIN
+Class ON Professor.Professor_Email = Class.Professor_Email
 
 --Запрос с агрегированием и выражением JOIN, включающим не менее 3 таблиц/выражений – 1
 
@@ -115,7 +119,17 @@ where Short_Faculty_Name = 'ФБМ'
 
 --Запрос с CASE (IIF) и агрегированием – 1 
 
-
+SELECT CONCAT(Surname, ' ', First_Name,' ', Second_Name) AS FSS,
+Student_count, Class.Room_number, Capacity,
+CASE
+	WHEN Capacity <= Student_count THEN 'В аудитории не хватает места'
+	ELSE 'Подходящая аудитория'
+END Message
+FROM Professor
+JOIN Class ON Professor.Professor_Email = Class.Professor_Email
+JOIN Groups_Class ON Groups_Class.Room_Number = Class.Room_Number
+JOIN Groups ON Groups_Class.Full_Group_Number = Groups.Full_Group_Number
+JOIN Room ON Room.Room_Number = Class.Room_Number
 
 --Запрос с HAVING и агрегированием – 1 
 
