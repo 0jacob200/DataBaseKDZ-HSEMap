@@ -192,13 +192,13 @@ VALUES('Понедельник', 9),
 ('Среда', 9),
 ('Четверг', 9),
 ('Пятница', 9), --5
-('Суббота', 9)
+('Суббота', 9),
 ('Понедельник',10),
 ('Вторник', 10),
 ('Среда', 10),
 ('Четверг', 10), --10
 ('Пятница', 10),
-('Суббота', 11
+('Суббота', 11),
 ('Воскресенье', 11)
 
 INSERT INTO Groups
@@ -213,8 +213,50 @@ GO
 
 INSERT INTO Groups_Student
 VALUES('BBI1806', 'ogzelyanin@edu.hse.ru'),
+('BBI1806', 'yaeshumilov@edu.hse.ru'),
+('BBI1806', 'aalwnivedwe@edu.hse.ru'),
+('BBI1806', 'abbzmgvlolbexk@edu.hse.ru'),
+('BBI1806', 'abgkzdm@edu.hse.ru'),
+('BBI1806', 'abglojerpopgj@edu.hse.ru'),
+('BBI1806', 'abluvga@edu.hse.ru'),
+('BBI1806', 'abmwjahzlzxxq@edu.hse.ru'),
+('BBI1806', 'abxdljxw@edu.hse.ru'),
+('BBI1806', 'acjjyys@edu.hse.ru'),
+('BBI1806', 'admcrjvtdvbak@edu.hse.ru'),
+('BBI1806', 'advpyqbeslwy@edu.hse.ru'),
+('BBI1806', 'advqtpyr@edu.hse.ru'),
+('BBI1806', 'adykztk@edu.hse.ru'),
+('BBI1806', 'aebzbwjwdaer@edu.hse.ru'),
+('BBI1806', 'aewuz@edu.hse.ru'),
+('BBI1806', 'afnizypotzftam@edu.hse.ru'),
+('BBI1806', 'afpscqiebfrohv@edu.hse.ru'),
 ('BBI1807', 'eigrinkevich@edu.hse.ru'),
-('BBI1806', 'yaeshumilov@edu.hse.ru')
+('BBI1807', 'afqgvfnna@edu.hse.ru'),
+('BBI1807', 'afsny@edu.hse.ru'),
+('BBI1807', 'agikvcyrmrfekq@edu.hse.ru'),
+('BBI1807', 'agqfoct@edu.hse.ru'),
+('BBI1807', 'agrsrx@edu.hse.ru'),
+('BBI1807', 'ahdkminpvj@edu.hse.ru'),
+('BBI1807', 'ahhwwsmkip@edu.hse.ru'),
+('BBI1807', 'aifitn@edu.hse.ru'),
+('BBI1807', 'aikhhv@edu.hse.ru'),
+('BBI1807', 'aiooervwmaxbhb@edu.hse.ru'),
+('BBI1807', 'akdig@edu.hse.ru'),
+('BBI1807', 'akkmb@edu.hse.ru'),
+('BBI1807', 'alaxecga@edu.hse.ru'),
+('BBI1807', 'alfwed@edu.hse.ru'),
+('BBI1807', 'alxdcwnb@edu.hse.ru'),
+('BBI1807', 'alygk@edu.hse.ru'),
+('BBI1807', 'alyogutah@edu.hse.ru'),
+('BBI1807', 'amaawdxqht@edu.hse.ru'),
+('BBI1807', 'amzgzvd@edu.hse.ru'),
+('BBI1807', 'ancsaxeavbg@edu.hse.ru'),
+('BBI1807', 'angyavszygi@edu.hse.ru'),
+('BBI1807', 'aoeag@edu.hse.ru'),
+('BBI1807', 'aoiyhbbk@edu.hse.ru'),
+('BBI1807', 'aokksgnmyfjlo@edu.hse.ru'),
+('BBI1807', 'apgvxyz@edu.hse.ru'),
+('BBI1807', 'aqcaohqszgp@edu.hse.ru')
 GO
 
 INSERT INTO Class
@@ -243,8 +285,11 @@ VALUES
 (10, 1),
 (11, 1),
 (12, 1),
-(13, 1),
+(13, 1)
 GO
+
+--insert into [dbo].[Schedule_Campus]
+--values ()
 
 INSERT INTO Room_Organisation
 VALUES
