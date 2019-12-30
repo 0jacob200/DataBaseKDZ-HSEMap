@@ -1,4 +1,4 @@
-use hsemap_db_edu
+create database hsemap_db_edu
 go
 
 CREATE TABLE [Student]
