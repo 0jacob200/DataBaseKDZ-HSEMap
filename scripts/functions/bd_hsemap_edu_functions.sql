@@ -1,6 +1,3 @@
-USE hsemap_db_edu
-go
-
 -- эта функция принемает на вход почту студента и дату. Возвращает его расписание в этот день
 CREATE FUNCTION SearchForClasses (@Email varchar(64), @Date date)
 RETURNS TABLE

@@ -1,6 +1,3 @@
-use hsemap_db_edu
-go
-
 CREATE TABLE [Student]
 ( 
 	[First_Name]         nvarchar(64)  NULL ,

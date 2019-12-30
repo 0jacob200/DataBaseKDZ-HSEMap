@@ -1,5 +1,3 @@
-USE hsemap_db_edu
-
 Insert into [dbo].[Student]
 Values('яков', '≈вченьевич', 'Ўумилов', 'yaeshumilov@edu.hse.ru'),
 ('ќлег', '√еннадьевич', '«ел€нин', 'ogzelyanin@edu.hse.ru'),

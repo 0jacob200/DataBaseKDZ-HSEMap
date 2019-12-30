@@ -1,6 +1,3 @@
-use hsemap_db_edu
-go
-
 CREATE FUNCTION FindRoom (@StartRoomNumber varchar(16))
 RETURNS TABLE
 AS

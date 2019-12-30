@@ -1,6 +1,3 @@
-use hsemap_db_edu
-go
-
 CREATE VIEW Schedule
 AS SELECT Start_Time, End_Time, Class.Campus_Name, Class.Room_Number, 
 Class.Date_Class, DATENAME(dw, Class.Date_Class) AS Week_Day, Full_Group_Number, Name_of_subject,

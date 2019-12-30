@@ -1,7 +1,4 @@
-﻿use hsemap_db_edu
-go
-
---Простой запрос с условием и формулами в SELECT – 2
+﻿--Простой запрос с условием и формулами в SELECT – 2
 
 select Full_Group_Number, Student_count from [dbo].[Groups]
 where Full_Group_Number like 'BBI18__'

@@ -1,6 +1,3 @@
-USE hsemap_db_edu
-go
-
 CREATE FUNCTION SearchForClasses (@Email varchar(64), @Date date)
 RETURNS TABLE
 AS
