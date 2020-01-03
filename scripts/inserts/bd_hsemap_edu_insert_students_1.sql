@@ -1,6 +1,3 @@
-use hsemap_db_edu
-go
-
 insert into [Student] values
 ('Валентина', 'Феликсовна', 'Кутякова', 'txefcchls@edu.hse.ru'),
 ('Вероника', 'Иосифовна', 'Мишнева', 'eolca@edu.hse.ru'),

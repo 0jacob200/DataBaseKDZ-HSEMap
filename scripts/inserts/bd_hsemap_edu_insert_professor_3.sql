@@ -1,6 +1,3 @@
-use [hsemap_db_edu]
-go
-
 insert into [Professor] values
 ('Приглашенный преподаватель', 'Никита', 'Андроникович', 'Дурченко', 'jfujeyhel@hse.ru'),
 ('Старший преподаватель', 'Бронислав', 'Яковович', 'Малюгин', 'odjwqnqf@hse.ru'),

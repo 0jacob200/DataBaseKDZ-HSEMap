@@ -1,6 +1,3 @@
-use hsemap_db_edu
-go
-
 Create or alter procedure AddClassForGroup
 (@startTime time(0),
 @endTime time(0),

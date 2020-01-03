@@ -1,6 +1,3 @@
-use hsemap_db_edu
-go
-
 Create or alter procedure InsertNewStudentWithGroup
 (@email varchar(64),
 @firstName nvarchar(64),

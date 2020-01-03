@@ -1,6 +1,3 @@
-use [hsemap_db_edu]
-go
-
 -- триггер на правильность введения данных о студентах: почта оканчивается на @edu.hse.ru и ФИО не может содержать меньше чем 2 буквы
 create trigger Email_Student_Edu_hse_ru on [dbo].[Student]
 	instead of insert

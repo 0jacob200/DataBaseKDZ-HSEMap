@@ -1,6 +1,3 @@
-use hsemap_db_edu
-go
-
 CREATE VIEW ScheduleOfOrganisations
 AS SELECT Organisation_Name, [Type], Campus_Name, Room_Number, Start_Time, End_Time, Week_day
 FROM Labor_day, Time_span, Organisation, Room_Organisation, Schedule_Organisation
