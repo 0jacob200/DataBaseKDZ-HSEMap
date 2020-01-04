@@ -14,7 +14,7 @@ go
 --Запрос с коррелированным подзапросом в SELECT – 2
 
 select Edu_level, Edu_prog_name, Short_Faculty_Name, 
-(select Campus_Name from Campus_Faculty where Short_Faculty_Name = Education_program.Short_Faculty_Name)
+(select Campus_Name from Campus_Faculty where Short_Faculty_Name = Education_program.Short_Faculty_Name) as Campus_Name
 from Education_program
 go
 
@@ -59,7 +59,6 @@ where Campus_Name = (select Campus_Name from [dbo].[Campus]
 where [Main_Address]='Покровский бульвар д.11')
 go
 
-
 --Запрос, использующий оконную функцию LAG или LEAD для выполнения сравнения данных в разных периодах – 1
 
 SELECT Campus_Name, Building_name, Room_Number, Start_time, End_time,
@@ -68,7 +67,6 @@ LAG(End_Time) OVER(ORDER By End_time) AS PreviousClass_EndTime
 FROM SearchForClasses('ogzelyanin@edu.hse.ru', '2019-12-27')
 JOIN Time_span ON SearchForClasses.ID_Time_span = Time_span.ID_Time_span
 go
-
 
 --Запрос с агрегированием и выражением JOIN, включающим не менее 2 таблиц – 3 
 
@@ -169,13 +167,13 @@ go
 
 --Запрос SELECT INTO для подготовки выгрузки – 1 
 
-select * into Education_Office from 
-(select concat(Type, ' ', Organisation_Name) as Education_Office, count(ID_Labor_day) as Num_of_Labor_day, Room_Number from Organisation as Org
-join Schedule_Organisation as So on Org.ID_Organisation = So.ID_Organisation
-join Room_Organisation as RO on RO.ID_Organisation = Org.ID_Organisation
-where [Type] = 'Учебный офис'
-Group by Organisation_Name, [Type], Room_Number) as P
-go
+--select * into Education_Office from 
+--(select concat(Type, ' ', Organisation_Name) as Education_Office, count(ID_Labor_day) as Num_of_Labor_day, Room_Number from Organisation as Org
+--join Schedule_Organisation as So on Org.ID_Organisation = So.ID_Organisation
+--join Room_Organisation as RO on RO.ID_Organisation = Org.ID_Organisation
+--where [Type] = 'Учебный офис'
+--Group by Organisation_Name, [Type], Room_Number) as P
+--go
 
 --Запрос с PIVOT для проведения анализа данных – 1 
 
