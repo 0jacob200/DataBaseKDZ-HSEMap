@@ -24,4 +24,5 @@ begin try
 end try
 begin catch
 	rollback tran savepoint;
+	commit tran;
 end catch;
