@@ -22,6 +22,9 @@ begin try
 	save tran savepoint;
 
 	delete from Time_span where ID_Time_span in (select first_id from @repeats);
+	save tran savepoint;
+
+	exec DeleteEqualsLaborDay;
 	commit tran;
 end try
 begin catch
