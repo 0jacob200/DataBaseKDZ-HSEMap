@@ -24,15 +24,13 @@ where Student_Email = Student.Student_Email) from Student
 go
 
 --Запрос с подзапросом в FROM– 2
+SELECT DISTINCT Name_of_subject, Full_Group_Number, Surname, Professor_Email, Rank FROM 
+(SELECT Name_of_subject, First_Name, Second_Name, Surname, Class.Professor_Email, Groups.Full_Group_Number, Rank FROM Class
+JOIN Professor ON Class.Professor_Email = Professor.Professor_Email
+JOIN Groups_Class ON Groups_Class.Room_Number = Class.Room_Number
+JOIN Groups ON Groups.Full_Group_Number = Groups_Class.Full_Group_Number) AS Professor_Subjects
 
-/*
-select * from 
-(select * from [dbo].[Organisation] where [Type] = 'Столовая') as org 
-join 
-(select ld.ID_Labor_day, ID_Organisation, Week_day from [dbo].[Schedule_Organisation] as s
-join [dbo].[Labor_day] as ld on s.ID_Labor_day = ld.ID_Labor_day) as s_org 
-on org.ID_Organisation = s_org.ID_Organisation
-*/
+
 
 --Запрос с подзапросом в FROM, агрегированием, группировкой и сортировкой – 2 
 
