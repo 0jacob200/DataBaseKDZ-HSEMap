@@ -16,9 +16,11 @@ begin try
 	where first_id = ID_Time_span) where ID_Time_span in (select first_id from @repeats);
 	save tran savepoint;
 
-	update Class set ID_Time_span = (select top(1) second_id from @repeats
+	update Class 
+	set ID_Time_span = (select top(1) second_id from @repeats
 	where first_id = ID_Time_span) where ID_Time_span in (select first_id from @repeats);
 	save tran savepoint;
+
 	delete from Time_span where ID_Time_span in (select first_id from @repeats);
 	commit tran;
 end try
