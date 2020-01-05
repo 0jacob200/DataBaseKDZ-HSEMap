@@ -322,15 +322,8 @@ INSERT INTO Student_Addition_Class
 VALUES('ogzelyanin@edu.hse.ru', 4, 'АУК "Шаболовская"', '5', '5410', '2019-12-27', 'Факультатив')
 GO
 
-INSERT INTO Schedule_Organisation
+INSERT INTO Schedule_Organisation (ID_Organisation, ID_Labor_day)
 VALUES
-(7, 1),
-(8, 1),
-(9, 1),
-(10, 1),
-(11, 1),
-(12, 1),
-(13, 1),
 (6,21),
 (6,22),
 (6,23),
@@ -347,6 +340,16 @@ VALUES
 (8,25),
 (8,21)
 GO
+
+insert into Schedule_Organisation
+values 
+(7, 1),
+(8, 1),
+(9, 1),
+(10, 1),
+(11, 1),
+(12, 1),
+(13, 1)
 
 INSERT INTO Room_Organisation
 VALUES
